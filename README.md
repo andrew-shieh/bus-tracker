@@ -2,7 +2,7 @@
 
 ## Description
 
-![Screenshot](demo.png)
+![Demo](demo.gif)
 
 Bus Tracker is a real-time bus monitoring application, wrapped in a clean, friendly, and easy-to-use interface.
 
