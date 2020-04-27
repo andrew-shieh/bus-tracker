@@ -1,123 +1,91 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
   <head>
-    <title>Bus Tracker</title>
-    <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
-    <style>
-      html, body, .container {
-        font-family: Helvetica;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 100%;
-      }
-      #title {
-        position: absolute;
-        top: 8px;
-        left: 24px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div id="map"></div>
-      <h1 id="title">VTA Bus Tracker</h1>
-    </div>
-      <!--<div class="header">
-        <h1>Bus Tracker</h1>
-      </div>
-      <div class="content">
-        <div id="map"></div>
-      </div>
-    </div>
-      -->
-    <script src="js/config.js"></script>
-    <script src="js/map.js" async defer></script>
-  </body>
-</html>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-
-<!--
-<html>
-  <head>
     <title>Bus Tracker</title>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css" />
+
   </head>
-<body>
-    <div class="container-fluid">
-      <div class="header clearfix">
-        <h3 class="text-muted">Bus Tracker</h3>
+  <body onload="initialize()">
+    <div id="sidebar" class="sidebar collapsed">
+      <div class="sidebar-tabs">
+        <ul role="tablist">
+          <li><a href="#home" role="tab"><i class="fa fa-home"></i></a></li>
+          <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
+        </ul>
       </div>
-      <div class="map-example">
-        <div class="row">
-          <div class="col-lg-3">
-            <div class="heading">
-              <h3>Lorem Ipsum Dolor</h3>
-              <div class="rating"><i class="fa fa-star icon"></i><i class="fa fa-star icon"></i><i class="fa fa-star icon"></i><i class="fa fa-star icon"></i><i class="fa fa-star-o icon"></i></div>
-            </div>
-            <div class="info">
-              <p>Bus line: Bus number:</p>
-            </div>
-            <div class="gallery">
-              <h4>Photos</h4>
-              <div class="row">
-                <div class="col-md-4"><a href="assets/img/image2.jpg"><img class="img-fluid image" src="assets/img/image2.jpg"></a></div>
-                <div class="col-md-4"><a href="assets/img/image3.jpg"><img class="img-fluid image" src="assets/img/image3.jpg"></a></div>
-                <div class="col-md-4"><a href="assets/img/image4.jpg"><img class="img-fluid image" src="assets/img/image4.jpg"></a></div>
+
+      <div class="sidebar-content">
+        <div class="sidebar-pane" id="home">
+          <h1 class="sidebar-header">
+            Bus Tracker
+            <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+          </h1><br>
+
+          <p>Bus Tracker is a real-time bus monitoring application, wrapped in a clean, friendly, and easy-to-use interface.</p>
+          <p>Features:<br>1) Visualize real-time bus locations instantly<br>2) Display all stops for your chosen bus line<br>3) Understand traffic conditions with route colors<br>4) Identify bus lines by mousing over any bus<br>5) Refresh in "Settings" to get the latest data<br></p>
+          <p>Bus Tracker currently only supports VTA lines 22 and Rapid 522.</p>
+          <p class="info">Transit data was obtained via the 511.org API, map data and rendering was obtained via the Google Maps Javascript API. </p>
+          <p class="info">Made by Andrew Shieh</p>
+
+        </div>
+
+        <div class="sidebar-pane" id="settings">
+          <h1 class="sidebar-header">
+            Settings
+            <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+          </h1><br>
+
+          <form id="settings">
+            <div class="form-group row">
+              <label for="agency-input" class="col-sm-3 col-form-label">Agency</label>
+              <div class="col-sm-9">
+                <input class="form-control" id="agency" value="VTA" readonly>
               </div>
             </div>
-          </div>
-          <div class="col-lg-9">
-            <div id="map"></div>
-          </div>
+
+            <div class="form-group row">
+              <label for="line-input" class="col-sm-3 col-form-label">Line</label>
+              <div class="col-sm-9">
+                <select class="form-control" id="line" pl>
+                  <option value="22">22</option>
+                  <option value="Rapid 522">Rapid 522</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="direction-input" class="col-sm-3 col-form-label">Direction</label>
+              <div class="col-sm-9">
+                <select class="form-control" id="direction">
+                  <option value="East">Eastbound</option>
+                  <option value="West">Westbound</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-refresh"></i> Refresh</button>
+          </form>
+
         </div>
       </div>
     </div>
-    <footer class="page-footer">
-        <div class="container">
-          <p>Made with ❤ by Andrew Shieh</p>
-        </div>
-    </footer>
+
+    <div id="map" class="sidebar-map"></div>
+
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/config.js"></script>
     <script src="js/map.js"></script>
-  </body>
-</html>
--->
-
-<!--
-
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Bus Tracker</title>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
+    <script>
+      function initialize() {
+        var sidebar = $('#sidebar').sidebar();
       }
-    </style>
-  </head>
-  <body>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3">CONTROLS</div>
-        <div class="col-sm-9">
-          <div id="map"></div>
-        </div>
-      </div>
-    </div>
+    </script>
   </body>
 </html>
--->
