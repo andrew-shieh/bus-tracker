@@ -26,7 +26,7 @@ For personal use, you will need to request both Open511 and Google Maps JavaScri
 `js/config.js` and add your keys like so:
 ```
 var keys = {
-    google_maps: {YOUR_GOOGLE_MAPS_API_KEY},
-    open_511: {YOUR_OPEN511_API_KEY}
+    google_maps: YOUR_GOOGLE_MAPS_API_KEY,
+    open_511: YOUR_OPEN511_API_KEY
 };
 ```
